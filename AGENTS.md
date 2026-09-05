@@ -9,7 +9,7 @@
 - **Zero Secrets in Git**: Never commit API keys, tokens, passwords, private keys, or actual credentials (`.env`, `credentials.json`, `token_*.json`).
 - **Environment Variables Only**: All credentials must be loaded via process environment variables (`process.env` / `os.environ.get(...)`).
 - **No Hardcoded Secrets**: Do not write key strings in code, comments, `.env.example`, or commit messages.
-- **No Absolute Paths**: Do not use local absolute paths (e.g., `/home/arari/...`).
+- **No Absolute Paths**: Do not use local absolute paths (e.g., `/home/username/...`).
 - **Gitleaks Protection**: Do not bypass gitleaks pre-commit checks with `--no-verify`.
 
 ---
