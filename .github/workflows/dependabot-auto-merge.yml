@@ -5,9 +5,10 @@ on:
     types: [opened, synchronize, reopened]
     branches: [main]
 
+# Top level stays read-only (OpenSSF Scorecard scores top-level writes down);
+# only the merge job gets the writes it actually needs.
 permissions:
-  contents: write      # merge the Dependabot PR
-  pull-requests: write # set auto-merge on it
+  contents: read
 
 # One merge attempt per PR at a time; a newer push to the same PR supersedes.
 concurrency:
@@ -18,6 +19,9 @@ jobs:
   dependabot:
     name: dependabot-auto-merge
     runs-on: ubuntu-latest
+    permissions:
+      contents: write      # merge the Dependabot PR
+      pull-requests: write # set auto-merge on it
     # Only fire for Dependabot's own PRs. Other PRs go through normal review.
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
